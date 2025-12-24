@@ -184,7 +184,7 @@
   block-size: 38px;
   border: 2px solid transparent;
   transition: border 0.3s ease;
-  background-color: transparent;
+  background-color: var(--bg-color);
   padding: 0;
 }
 
