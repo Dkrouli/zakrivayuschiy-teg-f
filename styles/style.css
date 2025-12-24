@@ -14,8 +14,10 @@
   display: flex;
   flex-direction: column;
   justify-self: center;
+  align-items: center;
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  margin: auto;
   font-family: var(--main-font), sans-serif;
   font-variation-settings: "wght" var(--card-text-fw);
   background-attachment: fixed;
@@ -27,27 +29,26 @@
   font-family: var(--accent-font), sans-serif;
   display: flex;
   flex-direction: column;
-  block-size: 327px;
+  block-size: clamp(20.438rem, 17.481rem + 12.62vw, 23rem);
   justify-content: center;
   text-align: center;
   align-items: center;
-  margin-block: 100px 240px;
+  margin-block: 100px;
   border: var(--border);
   gap: 20px;
 }
 
 .container {
-  inline-size: clamp(23.4375rem, 0rem + 100vw, 43.75rem);
+  inline-size: var(--block-width);
   background-color: var(--bg-color);
 }
 
 .header__title {
-  font-size: 49px;
-  width: var(--title-width);
+  font-size: clamp(3.063rem, 1.909rem + 4.92vw, 4.063rem);
 }
 
 .header__text {
-  font-size: 14px;
+  font-size: clamp(0.875rem, 0.226rem + 2.77vw, 1.438rem);
   text-transform: uppercase;
 }
 
@@ -74,35 +75,35 @@
   border-bottom: var(--border);
 }
 
-.road {
+.filter-contrast {
   filter: contrast(200%);
 }
 
-.empty {
+.filter-grayscale {
   filter: grayscale(75%);
 }
 
-.happy {
+.filter-saturate {
   filter: saturate(500%);
 }
 
-.pacman {
-  filter: blur(1px);
+.filter-blur {
+  filter: blur(1.5px);
 }
 
-.itcrowd {
-  filter: opacity(0.8);
+.filter-hue-rotate {
+  filter: hue-rotate(70deg);
 }
 
-.mario {
+.filter-invert {
   filter: invert(0.8);
 }
 
-.together {
+.filter-sepia {
   filter: sepia(75%);
 }
 
-.book {
+.filter-mix {
   filter: contrast(200%) saturate(200%) hue-rotate(20deg);
 }
 
@@ -124,16 +125,14 @@
   line-height: 100%;
   text-transform: uppercase;
   font-family: var(--accent-font);
-  -webkit-background-clip: text;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #fff;
-  background-clip: text;
-  mix-blend-mode: hard-light;
+  text-shadow: -1px 0 var(--text-shadow-color), 0 1px var(--text-shadow-color),
+    1px 0 var(--text-shadow-color), 0 -1px var(--text-shadow-color);
 }
 
-@supports (text-stroke: 1px #fff) {
-  .card__image-label {
-    text-stroke: 1px #fff;
+@supports (-webkit-text-stroke: 1px var(--text-shadow-color)) {
+  .card__label {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--text-shadow-color);
   }
 }
 
@@ -153,33 +152,20 @@
   padding: 25px;
 }
 
-.card__icon-button {
-  block-size: 38px;
-  border: 2px solid transparent;
-  transition: border 0.3s ease;
+.button {
   background-color: var(--bg-color);
-  padding: 0;
-}
-
-.card__icon-button:focus {
-  outline: none;
-}
-
-.card__icon-button:focus-visible {
-  border-color: #000;
-}
-
-.card__like-button {
-  justify-self: end;
-  inline-size: 130px;
   border: var(--border);
+  transition: box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
-  transition: box-shadow 0.3s ease;
-  background-color: var(--bg-color);
 }
 
-.card__like-button::before {
+.button:focus {
+  outline: none;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.button::before {
   content: "";
   inline-size: 100%;
   block-size: 100%;
@@ -190,13 +176,28 @@
   transition: transform 0.5s ease-in-out;
 }
 
-.card__like-button:hover::before {
+.button:hover::before {
   transform: translateX(0);
 }
 
-.card__like-button:focus {
-  outline: none;
-  box-shadow: 2px 2px 0 #000;
+.card__icon-button {
+  block-size: 38px;
+  border: 2px solid transparent;
+  transition: border 0.3s ease;
+  padding: 0;
+}
+
+.card__icon-button:focus {
+  box-shadow: none;
+}
+
+.card__icon-button:focus-visible {
+  border-color: #000;
+}
+
+.card__like-button {
+  justify-self: end;
+  inline-size: 130px;
 }
 
 .button__text {
@@ -207,7 +208,7 @@
   color: #fff;
 }
 
-.footer {
+.button__save-block {
   display: flex;
   justify-content: center;
   inline-size: auto;
@@ -216,39 +217,14 @@
 
 .button__save {
   inline-size: clamp(306px, 272.54px + 8.92vw, 335px);
-  display: grid;
+  display: flex;
   grid-template-columns: min-content 1fr;
   padding: 17px 20px;
   text-wrap: nowrap;
   gap: 8px;
   justify-content: center;
   align-items: center;
-  border: var(--border);
-  color: #fff;
-  background-color: var(--bg-color);
-  transition: box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.button__save::before {
-  content: "";
-  inline-size: 100%;
-  block-size: 100%;
-  position: absolute;
-  inset: 0;
-  background-color: #000;
-  transform: translateX(-100%);
-  transition: transform 0.5s ease-in-out;
-}
-
-.button__save:hover::before {
-  transform: translateX(0);
-}
-
-.button__save:focus {
-  outline: none;
-  box-shadow: 2px 2px 0 #000;
+  color: var(--bg-color);
 }
 
 .button__save svg {
@@ -275,6 +251,7 @@ dialog {
   inline-size: clamp(21.313rem, 20.447rem + 3.69vw, 22.063rem);
   font-family: var(--accent-font);
   font-size: 14px;
+  line-height: 150%;
   text-transform: uppercase;
   padding: 30px 40px;
 }
@@ -290,9 +267,8 @@ dialog:not([open]) {
   pointer-events: none;
 }
 
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
+dialog[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .dialog-info {
@@ -303,37 +279,16 @@ dialog::backdrop {
 
 .close {
   text-transform: uppercase;
-  border: var(--border);
   padding: 9px;
   text-align: center;
   inline-size: 100%;
-  position: relative;
-  overflow: hidden;
-  transition: box-shadow 0.3s ease;
-  background-color: var(--bg-color);
-}
-
-.close:focus {
-  outline: none;
-  box-shadow: 2px 2px 0 #000;
-}
-
-.close::before {
-  content: "";
-  inline-size: 100%;
-  block-size: 100%;
-  position: absolute;
-  inset: 0;
-  background-color: #000;
-  transform: translateX(-100%);
-  transition: transform 0.5s ease-in-out;
-}
-
-.close:hover::before {
-  transform: translateX(0);
 }
 
 @media (width <= 375px) {
+  .header {
+    margin-block: 100px 102px;
+  }
+
   .button__save {
     display: flex;
     flex-direction: column;
