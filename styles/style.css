@@ -91,11 +91,11 @@
 }
 
 .itcrowd {
-  filter: brightness(250%);
+  filter: opacity(0.8);
 }
 
 .mario {
-  filter: invert(0.8) saturate(200%);
+  filter: invert(0.8);
 }
 
 .together {
@@ -304,7 +304,6 @@ dialog::backdrop {
   text-transform: uppercase;
   border: var(--border);
   padding: 9px;
-  inline-size: 261px;
   text-align: center;
   inline-size: 100%;
   position: relative;
