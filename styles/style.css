@@ -213,14 +213,14 @@
   display: flex;
   justify-content: center;
   inline-size: auto;
-  margin-block: 52px 100px;
+  margin-block-end: 100px;
 }
 
 .button__save {
   inline-size: clamp(306px, 272.54px + 8.92vw, 335px);
   display: flex;
   grid-template-columns: min-content 1fr;
-  padding: 17px 20px;
+  padding: 17px 18px;
   text-wrap: nowrap;
   gap: 8px;
   justify-content: center;
@@ -229,7 +229,8 @@
 }
 
 .button__save svg {
-  width: 21px;
+  inline-size: 21px;
+  block-size: 21px;
   mix-blend-mode: difference;
 }
 
